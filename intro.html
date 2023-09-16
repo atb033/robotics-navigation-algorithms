@@ -167,6 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="global-path-planners.html">Global Path Planners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-trajectory-planners.html">Local Trajectory Planners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="path-smoothing.html">Path Smoothing</a></li>
 </ul>
 
     </div>
@@ -337,9 +339,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -355,21 +355,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Robotics Navigation Algorithms</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-path-planners">Global Path Planners</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-trajectory-planners">Local Trajectory Planners</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-smoothing">Path Smoothing</a></li>
-</ul>
-</li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -383,59 +368,12 @@ document.write(`
 <h1>Robotics Navigation Algorithms<a class="headerlink" href="#robotics-navigation-algorithms" title="Permalink to this heading">#</a></h1>
 <p>In this repo, I’ll be attempting to implement in Python a few robotics navigation algorithms that are currently supported in <a class="reference external" href="https://navigation.ros.org/">Navigation2</a>. The main inspiration for this project was this <a class="reference external" href="https://arxiv.org/pdf/2307.15236.pdf">awesome publication</a> by the maintainers of Navigation2.</p>
 <p>Please don’t hesitate to reach out to me and/or raise PR in case you are interested in contributing to this repo. :)</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="algorithms">
-<h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this heading">#</a></h1>
-<section id="global-path-planners">
-<h2>Global Path Planners<a class="headerlink" href="#global-path-planners" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Holonomic Planners</p>
-<ul>
-<li><p>Navigation Function</p></li>
-<li><p>Lazy Theta*-P</p></li>
-<li><p>2D-A*</p></li>
-</ul>
-</li>
-<li><p>Kinematically Feasible Planners</p>
-<ul>
-<li><p>Hybrid-A*</p></li>
-<li><p>State Lattice</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="local-trajectory-planners">
-<h2>Local Trajectory Planners<a class="headerlink" href="#local-trajectory-planners" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Reactive Controllers</p>
-<ul>
-<li><p>Dynamic Window Approach</p></li>
-</ul>
-</li>
-<li><p>Predictive Controllers</p>
-<ul>
-<li><p>Timed Elastic Band</p></li>
-<li><p>Model Predictive Path Integral</p></li>
-</ul>
-</li>
-<li><p>Geometric and Control-Law Controllers</p>
-<ul>
-<li><p>Regulated Pure Pursuit</p></li>
-<li><p>Graceful Controller</p></li>
-<li><p>Rotation Shim</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="path-smoothing">
-<h2>Path Smoothing<a class="headerlink" href="#path-smoothing" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Simple Smoother</p></li>
-<li><p>Constrained Smoother</p></li>
-<li><p>Savitzky-Golay Smoother</p></li>
-</ul>
-</section>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global-path-planners.html">Global Path Planners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local-trajectory-planners.html">Local Trajectory Planners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="path-smoothing.html">Path Smoothing</a></li>
+</ul>
 </div>
 </section>
 
@@ -484,27 +422,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Robotics Navigation Algorithms</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-path-planners">Global Path Planners</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-trajectory-planners">Local Trajectory Planners</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-smoothing">Path Smoothing</a></li>
-</ul>
-</li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
