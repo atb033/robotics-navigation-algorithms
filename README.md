@@ -37,7 +37,6 @@ Please don't hesitate to reach out to me and/or raise PR in case you are interes
 - Savitzky-Golay Smoother 
 
 
-
 ## Usage
 
 ### Building the book
