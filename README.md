@@ -11,30 +11,30 @@ Please don't hesitate to reach out to me and/or raise PR in case you are interes
 ## Global Path Planners
 
 - Holonomic Planners
-  - Navigation Function
-  - Lazy Theta*-P
-  - 2D-A*
+  - [ ] Navigation Function
+  - [ ] Lazy Theta*-P
+  - [ ] 2D-A*
 - Kinematically Feasible Planners
-  - Hybrid-A*
-  - State Lattice
+  - [ ] Hybrid-A*
+  - [ ] State Lattice
 
 ## Local Trajectory Planners
 
 - Reactive Controllers
-  - Dynamic Window Approach
+  - [ ] Dynamic Window Approach
 - Predictive Controllers
-  - Timed Elastic Band
-  - Model Predictive Path Integral
+  - [ ] Timed Elastic Band
+  - [ ] Model Predictive Path Integral
 - Geometric and Control-Law Controllers
-  - Regulated Pure Pursuit
-  - Graceful Controller
-  - Rotation Shim 
+  - [ ] Regulated Pure Pursuit
+  - [ ] Graceful Controller
+  - [ ] Rotation Shim 
 
 ## Path Smoothing
 
-- Simple Smoother
-- Constrained Smoother
-- Savitzky-Golay Smoother 
+- [ ] Simple Smoother
+- [ ] Constrained Smoother
+- [ ] Savitzky-Golay Smoother 
 
 
 ## Usage

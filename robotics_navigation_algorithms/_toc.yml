@@ -5,3 +5,5 @@ format: jb-book
 root: intro
 chapters:
 - file: global-path-planners
+- file: local-trajectory-planners
+- file: path-smoothing

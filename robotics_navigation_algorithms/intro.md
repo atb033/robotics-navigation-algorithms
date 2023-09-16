@@ -4,32 +4,5 @@ In this repo, I'll be attempting to implement in Python a few robotics navigatio
 
 Please don't hesitate to reach out to me and/or raise PR in case you are interested in contributing to this repo. :)
 
-# Algorithms
-
-## Global Path Planners
-
-- Holonomic Planners
-  - Navigation Function
-  - Lazy Theta*-P
-  - 2D-A*
-- Kinematically Feasible Planners
-  - Hybrid-A*
-  - State Lattice
-
-## Local Trajectory Planners
-
-- Reactive Controllers
-  - Dynamic Window Approach
-- Predictive Controllers
-  - Timed Elastic Band
-  - Model Predictive Path Integral
-- Geometric and Control-Law Controllers
-  - Regulated Pure Pursuit
-  - Graceful Controller
-  - Rotation Shim 
-
-## Path Smoothing
-
-- Simple Smoother
-- Constrained Smoother
-- Savitzky-Golay Smoother
+```{tableofcontents}
+```
