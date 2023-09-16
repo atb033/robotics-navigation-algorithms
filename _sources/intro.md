@@ -1,11 +1,35 @@
-# Welcome to your Jupyter Book
+# Robotics Navigation Algorithms
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+In this repo, I'll be attempting to implement in Python a few robotics navigation algorithms that are currently supported in [Navigation2](https://navigation.ros.org/). The main inspiration for this project was this [awesome publication](https://arxiv.org/pdf/2307.15236.pdf) by the maintainers of Navigation2.
 
-Check out the content pages bundled with this sample book to see more.
+Please don't hesitate to reach out to me and/or raise PR in case you are interested in contributing to this repo. :)
 
-```{tableofcontents}
-```
+# Algorithms
+
+## Global Path Planners
+
+- Holonomic Planners
+  - Navigation Function
+  - Lazy Theta*-P
+  - 2D-A*
+- Kinematically Feasible Planners
+  - Hybrid-A*
+  - State Lattice
+
+## Local Trajectory Planners
+
+- Reactive Controllers
+  - Dynamic Window Approach
+- Predictive Controllers
+  - Timed Elastic Band
+  - Model Predictive Path Integral
+- Geometric and Control-Law Controllers
+  - Regulated Pure Pursuit
+  - Graceful Controller
+  - Rotation Shim 
+
+## Path Smoothing
+
+- Simple Smoother
+- Constrained Smoother
+- Savitzky-Golay Smoother
