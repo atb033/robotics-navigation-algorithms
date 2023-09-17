@@ -2,3 +2,5 @@ jupyter-book
 matplotlib
 numpy
 ghp-import
+ipywidgets
+python3-tk
