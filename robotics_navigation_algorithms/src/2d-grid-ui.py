@@ -5,16 +5,6 @@ from enum import Enum
 CANVAS_SIZE_PIXELS = 400
 PIXEL_SIZE = 10
 
-window = tk.Tk()
-window.title("2D world")
-
-
-# Create a canvas widget for drawing
-canvas = tk.Canvas(
-    window, width=CANVAS_SIZE_PIXELS, height=CANVAS_SIZE_PIXELS, bg="white"
-)
-canvas.pack()
-
 
 class PixelType(Enum):
     FREE_SPACE = 0
@@ -46,34 +36,43 @@ class PixelElement:
         canvas.itemconfig(self.pixel, fill=GetPixelColourForType(type))
 
 
-def make_pixels(canvas):
-    num_rows = canvas.winfo_reqheight() // PIXEL_SIZE
-    num_cols = canvas.winfo_reqwidth() // PIXEL_SIZE
+class Pixels:
+    def __init__(self, canvas) -> None:
+        num_rows = canvas.winfo_reqheight() // PIXEL_SIZE
+        num_cols = canvas.winfo_reqwidth() // PIXEL_SIZE
 
-    pixels = [
-        [PixelElement(canvas, [i, j]) for j in range(num_cols)] for i in range(num_rows)
-    ]
-    return pixels
+        self.pixels = [
+            [PixelElement(canvas, [i, j]) for j in range(num_cols)]
+            for i in range(num_rows)
+        ]
 
-
-pixels = make_pixels(canvas)
-
-
-def add_point(x, y, type: PixelType):
-    row = y // PIXEL_SIZE
-    col = x // PIXEL_SIZE
-    canvas.itemconfig(pixels[row][col].add_point([row, col], type), fill="black")
-
-
-def on_canvas_click(event):
-    add_point(event.x, event.y, PixelType.OBSTACLE)
+    def add_point(self, x, y, type: PixelType):
+        row = y // PIXEL_SIZE
+        col = x // PIXEL_SIZE
+        canvas.itemconfig(
+            self.pixels[row][col].add_point([row, col], type),
+            fill=GetPixelColourForType(type),
+        )
 
 
-def on_canvas_drag(event):
-    add_point(event.x, event.y, PixelType.OBSTACLE)
+if __name__ == "__main__":
+    window = tk.Tk()
+    window.title("2D world")
 
+    # Create a canvas widget for drawing
+    canvas = tk.Canvas(
+        window, width=CANVAS_SIZE_PIXELS, height=CANVAS_SIZE_PIXELS, bg="white"
+    )
+    canvas.pack()
+    pixels = Pixels(canvas)
 
-canvas.bind("<Button-1>", on_canvas_click)
-canvas.bind("<B1-Motion>", on_canvas_drag)
+    def on_canvas_click(event):
+        pixels.add_point(event.x, event.y, PixelType.OBSTACLE)
 
-window.mainloop()
+    def on_canvas_drag(event):
+        pixels.add_point(event.x, event.y, PixelType.OBSTACLE)
+
+    canvas.bind("<Button-1>", on_canvas_click)
+    canvas.bind("<B1-Motion>", on_canvas_drag)
+
+    window.mainloop()
