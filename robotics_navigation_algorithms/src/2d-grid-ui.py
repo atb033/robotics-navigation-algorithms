@@ -1,7 +1,9 @@
 # This is a simple UI to make a 2D grid world that could generate an input to the path planners
 
 import tkinter as tk
+from tkinter.filedialog import asksaveasfile, askopenfilename
 from enum import Enum
+import yaml
 
 # Constants
 CANVAS_SIZE_PIXELS = 400
@@ -23,6 +25,28 @@ def GetPixelColourForType(type: PixelType):
     elif type == PixelType.GOAL_LOCATION:
         return "green"
     return "red"
+
+
+def GetPixelTypeName(type: PixelType):
+    if type == PixelType.FREE_SPACE:
+        return "free_space"
+    elif type == PixelType.START_LOCATION:
+        return "start_location"
+    elif type == PixelType.GOAL_LOCATION:
+        return "goal_location"
+    elif type == PixelType.OBSTACLE:
+        return "obstacle"
+
+
+def GetPixelTypeFromName(name: str):
+    if name == "free_space":
+        return PixelType.FREE_SPACE
+    elif name == "start_location":
+        return PixelType.START_LOCATION
+    elif name == "goal_location":
+        return PixelType.GOAL_LOCATION
+    elif name == "obstacle":
+        return PixelType.OBSTACLE
 
 
 class PixelElement:
@@ -99,6 +123,35 @@ class Pixels:
             for j in range(self.num_cols):
                 self.add_point(i, j, PixelType.FREE_SPACE)
 
+    def save_grid_to_file(self):
+        data = {GetPixelTypeName(type): [] for type in PixelType}
+        for row in range(self.num_rows):
+            for col in range(self.num_cols):
+                pixel = pixels.pixels[row][col]
+                if pixel.state == PixelType.FREE_SPACE:
+                    continue
+                data[GetPixelTypeName(pixel.state)].append([row, col])
+
+        f = asksaveasfile(
+            initialfile="2D-Grid.txt",
+            defaultextension=".txt",
+            filetypes=[("All Files", "*.*"), ("Text Documents", "*.txt")],
+        )
+        yaml.dump(data, f)
+        print(f"Saving as {f}")
+
+    def load_grid_from_file(self):
+        f = askopenfilename()
+        print(f"Loading {f}")
+        with open(f, "r") as file:
+            dic = yaml.safe_load(file)
+        pixels.clear_all()
+        for key, val in dic.items():
+            pixel_type = GetPixelTypeFromName(key)
+            for index in val:
+                [row, col] = index
+                pixels.add_point(row, col, pixel_type)
+
 
 if __name__ == "__main__":
     window = tk.Tk()
@@ -112,6 +165,7 @@ if __name__ == "__main__":
 
     # Frame
     frame = tk.Frame(window)
+    frame2 = tk.Frame(window)
 
     # Buttons
     obstacle = tk.Button(
@@ -123,7 +177,7 @@ if __name__ == "__main__":
 
     free_space = tk.Button(frame, text="Free Space", command=pixels.set_free_space)
 
-    reset = tk.Button(frame, text="Reset", command=pixels.clear_all)
+    reset = tk.Button(frame2, text="Reset", command=pixels.clear_all)
 
     start_location = tk.Button(
         frame, text="Start Location", fg="blue", command=pixels.set_start_location
@@ -132,6 +186,9 @@ if __name__ == "__main__":
     goal_location = tk.Button(
         frame, text="Goal Location", fg="green", command=pixels.set_goal_location
     )
+
+    save = tk.Button(frame2, text="Save Grid", command=pixels.save_grid_to_file)
+    load = tk.Button(frame2, text="Load Grid", command=pixels.load_grid_from_file)
 
     # Add callbacks
     def on_canvas_click(event):
@@ -147,9 +204,12 @@ if __name__ == "__main__":
     frame.pack()
     obstacle.pack(side=tk.LEFT)
     free_space.pack(side=tk.LEFT)
-    reset.pack(side=tk.LEFT)
     start_location.pack(side=tk.LEFT)
     goal_location.pack(side=tk.LEFT)
+    frame2.pack()
+    reset.pack(side=tk.LEFT)
+    save.pack(side=tk.LEFT)
+    load.pack(side=tk.LEFT)
     canvas.pack()
 
     window.mainloop()
