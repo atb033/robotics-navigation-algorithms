@@ -71,7 +71,6 @@ class Pixels:
     def clear_all(self):
         old_button_type = self.button_type
         self.button_type = PixelType.FREE_SPACE
-        print(self.num_rows)
         for i in range(self.num_rows):
             for j in range(self.num_cols):
                 self.add_point(i, j)
@@ -98,9 +97,6 @@ if __name__ == "__main__":
         fg="red",
         command=pixels.set_obstacle,
     )
-
-    def write_slogan():
-        print("Tkinter is easy to use!")
 
     free_space = tk.Button(frame, text="Free Space", command=pixels.set_free_space)
 
