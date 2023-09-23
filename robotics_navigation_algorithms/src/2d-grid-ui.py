@@ -9,11 +9,14 @@ PIXEL_SIZE = 10
 class PixelType(Enum):
     FREE_SPACE = 0
     OBSTACLE = 1
+    START_LOCATION = 2
 
 
 def GetPixelColourForType(type: PixelType):
     if type == PixelType.FREE_SPACE:
         return "white"
+    elif type == PixelType.START_LOCATION:
+        return "green"
     return "red"
 
 
@@ -38,6 +41,7 @@ class PixelElement:
 
 class Pixels:
     button_type = PixelType.OBSTACLE
+    current_start_location = []
 
     def __init__(self, canvas) -> None:
         self.num_rows = canvas.winfo_reqheight() // PIXEL_SIZE
@@ -48,16 +52,27 @@ class Pixels:
             for i in range(self.num_rows)
         ]
 
-    def add_point(self, row, col):
+    def add_point(self, row, col, type: PixelType):
         canvas.itemconfig(
-            self.pixels[row][col].add_point(self.button_type),
-            fill=GetPixelColourForType(self.button_type),
+            self.pixels[row][col].add_point(type),
+            fill=GetPixelColourForType(type),
         )
+
+    def add_single_cell_point(self, row, col, type: PixelType):
+        if self.current_start_location:
+            old_row, old_col = self.current_start_location
+            self.add_point(old_row, old_col, PixelType.FREE_SPACE)
+        self.current_start_location = [row, col]
+        self.add_point(row, col, PixelType.START_LOCATION)
 
     def add_point_from_pixels(self, x, y):
         row = y // PIXEL_SIZE
         col = x // PIXEL_SIZE
-        self.add_point(row, col)
+
+        if self.button_type == PixelType.START_LOCATION:
+            self.add_single_cell_point(row, col, self.button_type)
+        else:
+            self.add_point(row, col, self.button_type)
 
     def set_button_type(self, type: PixelType):
         self.button_type = type
@@ -68,13 +83,14 @@ class Pixels:
     def set_obstacle(self):
         self.set_button_type(PixelType.OBSTACLE)
 
+    def set_start_location(self):
+        self.button_type = PixelType.START_LOCATION
+        pass
+
     def clear_all(self):
-        old_button_type = self.button_type
-        self.button_type = PixelType.FREE_SPACE
         for i in range(self.num_rows):
             for j in range(self.num_cols):
-                self.add_point(i, j)
-        self.button_type = old_button_type
+                self.add_point(i, j, PixelType.FREE_SPACE)
 
 
 if __name__ == "__main__":
@@ -102,6 +118,10 @@ if __name__ == "__main__":
 
     reset = tk.Button(frame, text="Reset", command=pixels.clear_all)
 
+    start_location = tk.Button(
+        frame, text="Start Location", fg="green", command=pixels.set_start_location
+    )
+
     # Add callbacks
     def on_canvas_click(event):
         pixels.add_point_from_pixels(event.x, event.y)
@@ -117,6 +137,7 @@ if __name__ == "__main__":
     obstacle.pack(side=tk.LEFT)
     free_space.pack(side=tk.LEFT)
     reset.pack(side=tk.LEFT)
+    start_location.pack(side=tk.LEFT)
     canvas.pack()
 
     window.mainloop()
