@@ -7,3 +7,4 @@ chapters:
 - file: global-path-planners
 - file: local-trajectory-planners
 - file: path-smoothing
+- file: src/tools/2d-grid-ui.md
