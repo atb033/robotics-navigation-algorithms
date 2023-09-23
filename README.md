@@ -1,6 +1,6 @@
 # Robotics Navigation Algorithms
 
-Python implementation of a few robotics navigation algorithm. Check [this page](https://atb033.github.io/robotics-navigation-algorithms/) for the website version of this repo.
+Python implementation of a few robotics navigation algorithms. Check [this page](https://atb033.github.io/robotics-navigation-algorithms/) for the website version of this repo.
 
 In this repo, I'll be attempting to implement in Python a few robotics navigation algorithms that are currently supported in [Navigation2](https://navigation.ros.org/). The main inspiration for this project was this [awesome publication](https://arxiv.org/pdf/2307.15236.pdf) by the maintainers of Navigation2.
 
