@@ -1,3 +1,5 @@
+# This is a simple UI to make a 2D grid world that could generate an input to the path planners
+
 import tkinter as tk
 from enum import Enum
 
