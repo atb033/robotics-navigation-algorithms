@@ -1,4 +1,4 @@
-# Simple UI Global Planning
+# Simple UI for Global Planning
 
 This is a simple UI which could be used to create inputs for the global-path-planners. Run the following command to run this tool:
 
