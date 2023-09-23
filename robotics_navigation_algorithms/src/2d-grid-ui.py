@@ -10,12 +10,15 @@ class PixelType(Enum):
     FREE_SPACE = 0
     OBSTACLE = 1
     START_LOCATION = 2
+    GOAL_LOCATION = 3
 
 
 def GetPixelColourForType(type: PixelType):
     if type == PixelType.FREE_SPACE:
         return "white"
     elif type == PixelType.START_LOCATION:
+        return "blue"
+    elif type == PixelType.GOAL_LOCATION:
         return "green"
     return "red"
 
@@ -85,7 +88,9 @@ class Pixels:
 
     def set_start_location(self):
         self.button_type = PixelType.START_LOCATION
-        pass
+
+    def set_goal_location(self):
+        self.button_type = PixelType.GOAL_LOCATION
 
     def clear_all(self):
         for i in range(self.num_rows):
@@ -119,7 +124,11 @@ if __name__ == "__main__":
     reset = tk.Button(frame, text="Reset", command=pixels.clear_all)
 
     start_location = tk.Button(
-        frame, text="Start Location", fg="green", command=pixels.set_start_location
+        frame, text="Start Location", fg="blue", command=pixels.set_start_location
+    )
+
+    goal_location = tk.Button(
+        frame, text="Goal Location", fg="green", command=pixels.set_goal_location
     )
 
     # Add callbacks
@@ -138,6 +147,7 @@ if __name__ == "__main__":
     free_space.pack(side=tk.LEFT)
     reset.pack(side=tk.LEFT)
     start_location.pack(side=tk.LEFT)
+    goal_location.pack(side=tk.LEFT)
     canvas.pack()
 
     window.mainloop()
