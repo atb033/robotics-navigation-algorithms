@@ -70,7 +70,7 @@ class PixelElement:
 
 class Pixels:
     button_type = PixelType.OBSTACLE
-    current_start_location = []
+    single_pixel_locations = {PixelType.START_LOCATION: [], PixelType.GOAL_LOCATION: []}
 
     def __init__(self, canvas) -> None:
         self.num_rows = canvas.winfo_reqheight() // PIXEL_SIZE
@@ -88,17 +88,17 @@ class Pixels:
         )
 
     def add_single_cell_point(self, row, col, type: PixelType):
-        if self.current_start_location:
-            old_row, old_col = self.current_start_location
+        if self.single_pixel_locations[type]:
+            old_row, old_col = self.single_pixel_locations[type]
             self.add_point(old_row, old_col, PixelType.FREE_SPACE)
-        self.current_start_location = [row, col]
-        self.add_point(row, col, PixelType.START_LOCATION)
+        self.single_pixel_locations[type] = [row, col]
+        self.add_point(row, col, type)
 
     def add_point_from_pixels(self, x, y):
         row = y // PIXEL_SIZE
         col = x // PIXEL_SIZE
 
-        if self.button_type == PixelType.START_LOCATION:
+        if self.button_type in [PixelType.START_LOCATION, PixelType.GOAL_LOCATION]:
             self.add_single_cell_point(row, col, self.button_type)
         else:
             self.add_point(row, col, self.button_type)
